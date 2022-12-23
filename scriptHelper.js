@@ -44,25 +44,25 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
     copilotStatus.innerHTML = `Copilot  is ready for launch`;
     let launchStatus = document.getElementById("launchStatus");
-    if (fuelLevel <= 10000) {
-      fuel.innerHTML = "Fuel level too low for launch";
-      cargo.innerHTML = "Cargo mass low enough for launch"
+    if (fuelLevel < 10000 & cargoLevel <= 10000) {
+      fuelStatus.innerHTML = "Fuel level too low for launch";
+      cargoStatus.innerHTML = "Cargo mass low enough for launch"
       launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style.color = "#C7254E";
     } else if (fuelLevel >= 10000 && cargoLevel > 10000) {
-      fuel.innerHTML = "Fuel level high enough for launch"
-      cargo.innerHTML = "Cargo mass low enough for launch"
+      fuelStatus.innerHTML = "Fuel level high enough for launch"
+      cargoStatus.innerHTML = "Cargo mass too heavy for launch"
       launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style.color = "#C7254E";
-    } else if (fuelLevel >= 10000 && cargoLevel > 10000) {
-      fuel.innerHTML = "Fuel level high enough for launch"
-      cargo.innerHTML = "Cargo mass too heavy for launch";
+    } else if (fuelLevel < 10000 && cargoLevel > 10000) {
+      fuelStatus.innerHTML = "Fuel level too low enough for launch"
+      cargoStatus.innerHTML = "Cargo mass too heavy for launch";
       launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style.color = "#C7254E";
     } else {
-      fuel.innerHTML = "Fuel level high enough for launch"
-      cargo.innerHTML = "Cargo mass low enough for launch"
-      launchStatus.innerHTML = "Shuttle is Ready for Launch";
+      fuelStatus.innerHTML = "Fuel level high enough for launch"
+      cargoStatus.innerHTML = "Cargo mass low enough for launch"
+      launchStatus.innerHTML = "Shuttle is ready for Launch";
       launchStatus.style.color = "#419F6A";
     }
   }
@@ -99,7 +99,7 @@ async function myFetch() {
 }
 function pickPlanet(planets) {
   let randomIndex = Math.floor(Math.random() * planets.length);
-  console.log(planets[randomIndex])
+  // console.log(planets[randomIndex])
   return planets[randomIndex];
 }
 module.exports.addDestinationInfo = addDestinationInfo;
